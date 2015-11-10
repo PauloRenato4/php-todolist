@@ -5,30 +5,28 @@ require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
 $app->get('/', function() use ( $app ) {
-    echo "Welcome to REST API";
+   echo "Welcome to REST API";
 });
 
-$app->get('/hello/:name', function($name) use ( $app ) {
-    echo "Hi $name, welcome to the REST API's";
-});
+//$app->get('/hello/:name', function($name) use ( $app ) {
+ //   echo "Hi $name, welcome to the REST API's";
+//});
 
 
-$app->get('/API/TASKS/:tasks', function($tasks) use ( $app ) {
+$app->get('/tasks', function() use ( $app ) {
     
-
-
-});
-
-
-$task = array (
-   $id => 1,
-    $Description => "Learn Rest",
-    $done => False
+    $tasks[] = array (
+        
+   array('id' => 1, 'description' => 'Learn Rest', 'Done' => 'false'),
+   array('id' => 2, 'description' => 'Learn Javascript', 'Done' => 'false')
     
 );
 
+echo json_encode($tasks);
 
-echo json_encode($calculation);
+
+});
+
 $app->run();
 
 ?>
