@@ -1,32 +1,21 @@
 <?php
-
 require 'vendor/autoload.php';
-
 $app = new \Slim\Slim();
-
+//http://hostname/api/
 $app->get('/', function() use ( $app ) {
-   echo "Welcome to REST API";
+    echo "Welcome to Task REST API";
 });
-
-//$app->get('/hello/:name', function($name) use ( $app ) {
- //   echo "Hi $name, welcome to the REST API's";
-//});
-
-
 $app->get('/tasks', function() use ( $app ) {
-    
-    $tasks[] = array (
-        
-   array('id' => 1, 'description' => 'Learn Rest', 'Done' => 'false'),
-   array('id' => 2, 'description' => 'Learn Javascript', 'Done' => 'false')
-    
-);
-
-echo json_encode($tasks);
-
-
+    $tasks = getTasks();
+    echo json_encode($tasks);
 });
-
+//TODO move it to a DAO class
+function getTasks() {
+    $tasks = array (
+        array('id'=>1,'description'=>'Learn REST','done'=>false),
+        array('id'=>2,'description'=>'Learn JavaScript','done'=>false)
+    );
+    return $tasks;
+}
 $app->run();
-
 ?>
