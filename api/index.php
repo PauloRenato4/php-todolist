@@ -31,6 +31,21 @@ $app->get('/tasks/:id', function($id) use ($app){
     
 });
 
+
+$app->post('/tasks', function() use ($app){
+   
+   $taskJson =  $app->request()->getBody(); 
+   $task = json_decode($taskJson);
+  echo $task->description;
+   
+
+   
+   
+  
+});
+
+
+
 //TODO move it to a DAO class
 function getTasks() {
     $tasks = array (
