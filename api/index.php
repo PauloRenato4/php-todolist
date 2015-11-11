@@ -35,10 +35,15 @@ $app->get('/tasks/:id', function($id) use ($app){
 $app->post('/tasks', function() use ($app){
    
    $taskJson =  $app->request()->getBody(); 
-   $task = json_decode($taskJson);
-  echo $task->description;
-   
+   if($tasks){
+   echo "{$tasks->description} added";
 
+   
+}
+else {
+    $app->response()->setStatus(400);
+    echo "Malformat Json";
+}
    
    
   
