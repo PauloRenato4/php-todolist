@@ -1,6 +1,5 @@
 <?php
 class ConnectionFactory {
-
     public static function getDB() {
         $connection = self::getConnection();
         $db = new NotORM($connection);
