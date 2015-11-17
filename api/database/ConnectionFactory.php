@@ -1,4 +1,4 @@
-<?
+<?php
 
 class ConnectionFactory{
     
@@ -17,12 +17,6 @@ class ConnectionFactory{
         $connection = new  PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
         return $connection;
     }
-    
-    
-    
-    
-    
+  
 }
-
-
 ?>

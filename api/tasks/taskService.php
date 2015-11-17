@@ -1,7 +1,5 @@
 <?php
 
-require '../database/ConnectionFactory.php';
-
 class TaskService{
     
     public static function listTasks(){
@@ -9,9 +7,9 @@ class TaskService{
         $tasks  = array();
         foreach($db->tasks() as $task){
             $tasks[]  = array(
-                'id'=> $tasks['id'],
+                'id'=> $task['id'],
                 'description'=> $task['description'],
-                'done'=> $tasks['done']
+                'done'=> $task['done']
                 );
         }
         

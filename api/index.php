@@ -1,5 +1,10 @@
 <?php
 require 'vendor/autoload.php';
+require 'database/ConnectionFactory.php';
+require 'tasks/taskService.php';
+
+
+
 $app = new \Slim\Slim();
 // http://hostname/api/
 $app->get('/', function() use ( $app ) {
@@ -27,7 +32,7 @@ RESPONSE 200 OK
 ]
 */
 $app->get('/tasks', function() use ( $app ) {
-    $tasks = getTasks();
+    $tasks = taskService::listTasks();
     //Define what kind is this response
     $app->response()->header('Content-Type','application/json');
     echo json_encode($tasks);
@@ -100,14 +105,6 @@ Task deleted
 $app->delete('/tasks/:id', function($id) use ( $app ) {
     echo $id;
 });
-//TODO move it to a DAO class
-function getTasks() {
-    $tasks = array (
-        array('id'=>1,'description'=>'Learn REST','done'=>false),
-        array('id'=>2,'description'=>'Learn JavaScript','done'=>false),
-        array('id'=>3,'description'=>'Learn English','done'=>false)
-    );
-    return $tasks;
-}
+
 $app->run();
 ?>
