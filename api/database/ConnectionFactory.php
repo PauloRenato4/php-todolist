@@ -1,22 +1,26 @@
 <?php
-
-class ConnectionFactory{
-    
-    public static function getDB(){
-        $connection = self::getconnection();
+class ConnectionFactory {
+    public static function getDB() {
+        $connection = self::getConnection();
         $db = new NotORM($connection);
         return $db;
-        
     }
     
-    private static function getConnection(){
+    private static function getConnection() {
         $dbhost = getenv('IP');
         $dbuser = getenv('C9_USER');
-        $dppass = '';
-        $dbname = 'C9';
-        $connection = new  PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+        $dbpass = '';
+        $dbname = 'c9';
+        
+        try {
+            $connection = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+        }
+        catch(Exception $e) {
+           echo $e->getMessage();
+           die;
+        }
+        
         return $connection;
     }
-  
 }
 ?>
